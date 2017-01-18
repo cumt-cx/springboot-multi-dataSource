@@ -1,0 +1,48 @@
+#server:
+    #port: 8080
+    #context-path: #/lovepei/
+
+#logging:
+    #level:
+        #com.loepei.sandwich: TRACE
+
+spring:
+    #firstDataSource
+    datasource:
+        name: test1
+        url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: fuq
+        driver-class-name: com.mysql.jdbc.Driver
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    #secondDataSource
+    secondDataSource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: fuq
+
+mybatis:
+      type-aliases-package: com.lovepi.sandwich.entity
+      mapper-locations: classpath:mapper/test1/*.xml
+      configuration:
+          mapUnderscoreToCamelCase: true
+          useColumnLabel : true
+          useGeneratedKeys: true
+
+
+
