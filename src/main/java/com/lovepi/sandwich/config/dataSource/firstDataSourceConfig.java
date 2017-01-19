@@ -93,7 +93,7 @@ public class firstDataSourceConfig {
         //IP黑名单 (存在共同时，deny优先于allow) : 如果满足deny的话提示:Sorry, you are not permitted to view this page.
         servletRegistrationBean.addInitParameter("deny", "192.168.1.73");
         //登录查看信息的账号密码.
-        servletRegistrationBean.addInitParameter("loginUsername", "admin2");
+        servletRegistrationBean.addInitParameter("loginUsername", "admin1");
         servletRegistrationBean.addInitParameter("loginPassword", "123456");
         //是否能够重置数据.
         servletRegistrationBean.addInitParameter("resetEnable", "false");
@@ -115,6 +115,7 @@ public class firstDataSourceConfig {
     }
 
     @Bean(name = "firstDatasource")
+    @Primary
     public DataSource firstDatasource() throws SQLException {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setName(dbName);
@@ -155,7 +156,6 @@ public class firstDataSourceConfig {
     }
 
     @Bean(name = "firstSqlSessionTemplate")
-    @Primary
     public SqlSessionTemplate testSqlSessionTemplate(@Qualifier("firstSessionFactory") SqlSessionFactory firstSqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(firstSqlSessionFactory);
     }

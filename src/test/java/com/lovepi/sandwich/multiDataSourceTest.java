@@ -3,6 +3,7 @@ package com.lovepi.sandwich;
 import com.lovepi.sandwich.entity.User;
 import com.lovepi.sandwich.enums.UserSexEnum;
 import com.lovepi.sandwich.mapper.test1.User1Mapper;
+import com.lovepi.sandwich.mapper.test2.User2Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class multiDataSourceTest {
 
     @Autowired
     private User1Mapper user1Mapper;
-//
-//    @Autowired
-//    private User2Mapper user2Mapper;
+
+    @Autowired
+    private User2Mapper user2Mapper;
 
     @Test
     public void testUser1MapperAddMethod(){
@@ -28,10 +29,10 @@ public class multiDataSourceTest {
         user1Mapper.insert(user);
     }
 
-//    @Test
-//    public void testUser2MapperAddMethod(){
-//        User user = new User("fuq","123456", UserSexEnum.MAN,"bigMan");
-//        user2Mapper.insert(user);
-//    }
+    @Test
+    public void testUser2MapperAddMethod(){
+        User user = new User("fuq","123456", UserSexEnum.MAN,"bigMan");
+        user2Mapper.insert(user);
+    }
 
 }
